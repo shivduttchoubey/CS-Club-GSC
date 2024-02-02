@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+    :root {
+	--size: 30px;
+	--path: 200px;
+	--box-radius: 30%;
+	--main-color: rgba(255, 128, 0, 0.8);
+	--main-border: 2px solid rgba(128, 128, 128, 0.4);
+	//--main-gradient: linear-gradient(to bottom right, red, orange, yellow, green, blue, indigo, violet);
+	--main-gradient: conic-gradient(red, orange, yellow, green, blue, indigo, violet);
+}
+
+body {
+	perspective: 800px;
+	margin: 0;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #111;
+	overflow: hidden;
+}
+
+.container {
+	position: relative;
+	transform-style: preserve-3d;
+	animation: rotateScene 10s infinite linear;
+}
+
+.sphere {
+	position: absolute;
+	width: var(--size);
+	height: var(--size);
+	border-radius: var(--box-radius);
+	border: var(--main-border);
+	background: var(--main-gradient);
+	animation: moveSphere 2s infinite linear alternate;
+}
+
+@keyframes rotateScene {
+	from {
+		transform: rotateY(20deg) rotateZ(0deg);
+	}
+	to {
+		transform: rotateY(20deg) rotateZ(360deg);
+	}
+}
+
+@keyframes moveSphere {
+	from {
+		transform: translateY(calc(var(--path) / 2))
+			translateX(calc(-1 * var(--path) / 2)) rotateZ(0);
+	}
+	to {
+		transform: translateY(calc(-1 * var(--path) / 2))
+			translateX(calc(var(--path) / 2)) rotateZ(720deg);
+	}
+}
+
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="sphere"></div>
+        <div class="sphere" style="animation-delay: 0.4s;"></div>
+        <div class="sphere" style="animation-delay: 0.8s;"></div>
+        <div class="sphere" style="animation-delay: 1.2s;"></div>
+        <div class="sphere" style="animation-delay: 1.6s;"></div>
+        <div class="sphere" style="animation-delay: 2.0s;"></div>
+        <div class="sphere" style="animation-delay: 2.4s;"></div>
+        <!-- Add more spheres as needed -->
+    </div>
+</body>
+</html>
